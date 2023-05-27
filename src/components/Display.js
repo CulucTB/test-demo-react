@@ -21,9 +21,11 @@ class DisplayInfor extends React.Component {
         //props =>viết tắt properties 
         console.log(listUsers)
         // console.table(listUsers)
+
+        // template +logic js
         return (
             <div className='display-infor-container'>
-                <img src={logo1} />
+                {/* <img src={logo1} /> */}
                 <div>
                     <span onClick={() => { this.handleShowHide() }}>
 
@@ -33,10 +35,16 @@ class DisplayInfor extends React.Component {
                 {this.state.isShowListUser &&
                     <>
                         {listUsers.map((user, index) => {
+                            console.log(user)
                             return (
                                 <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
                                     <div> My name's {user.name} </div>
                                     <div> My age's {user.age} </div>
+                                    <div>
+                                        <button onClick={() => this.props.handleDeleteUser(user.id)}>
+                                            Delete
+                                        </button>
+                                    </div>
                                     <hr />
                                 </div>
                             )
