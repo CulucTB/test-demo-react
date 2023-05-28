@@ -4,15 +4,36 @@ import logo1 from './../logo.svg';
 
 class DisplayInfor extends React.Component {
 
-    state = {
-        isShowListUser: true
+    constructor(props) {
+        console.log(">>> call me contructor: 1")
+        super(props);
+        // babel compiler
+        this.state = {
+            isShowListUser: true
+        }
     }
+
+    componentDidMount() {
+        console.log('>>> call me component did mount')
+        setTimeout(() => {
+            document.title = 'Eric & Hoi Dan IT'
+        }, 3000);
+    }
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log('>>> call me component did update', this.props.prevProps)
+        if (this.props.listUsers !== prevProps.listUsers) {
+            alert('you got 5 users')
+        }
+    }
+
     handleShowHide = () => {
         this.setState({
             isShowListUser: !this.state.isShowListUser
         })
     }
     render() {
+        console.log('>>> call me render')
         // console.log(this.props)
         //destructuring array/object
         const { listUsers } = this.props;
