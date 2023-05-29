@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Displayinfor.scss';
 import logo1 from './../logo.svg';
+import { unstable_renderSubtreeIntoContainer } from 'react-dom';
 
 // stateless vs stateful
 
@@ -50,11 +51,28 @@ import logo1 from './../logo.svg';
 
 const DisplayInfor = (props) => {
     const { listUsers } = props;//object
+    const [isShowHideListUser, setShowHideListUser] = useState(true);
+
+    // this.state = {
+    //     isShowHideListUser: true 
+    // }
+    const handleShowHideListUser = () => {
+        // this.state = {
+        //     isShowHideListUser: true 
+        // }
+        setShowHideListUser(!isShowHideListUser);
+    }
 
     return (
         <div className='display-infor-container'>
+            <div>
+                <span onClick={() => handleShowHideListUser()}>
+                    {isShowHideListUser === true ? "Hide list users" : "Show List user"}
+                </span>
+            </div>
 
-            {true &&
+
+            {isShowHideListUser &&
                 <>
                     {listUsers.map((user, index) => {
                         console.log(user)
